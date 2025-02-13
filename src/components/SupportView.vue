@@ -25,9 +25,20 @@
         <p>Este es el Bloque 2 fuera del contenedor.</p>
       </div>
 
-      <div class="v-container"></div>
-      <div class="btn">Generar</div>
-      <div class="output"></div>
+      <div class="v-container">
+        <div
+          v-for="(item, index) in myarray"
+          :key="item.id"
+          :style="{
+            backgroundColor: index % 2 !== 0 ? '#e6e6e6' : '',
+            visibility: index % 2 === 0 ? 'hidden' : 'visible',
+          }"
+        >
+          Nombre: {{ item.name }}, Roles: {{ item.roles.join(", ") }}
+        </div>
+      </div>
+      <div class="btn" @click="generateOutput">Generar</div>
+      <div class="output">{{ output }}</div>
     </body>
   </html>
 </template>
@@ -35,15 +46,28 @@
 <script>
 export default {
   name: "SupportView",
-  components: {},
   data() {
     return {
-      myArray: [],
+      myarray: [
+        { id: 1, name: "Will Smith", roles: [1, 3] },
+        { id: 2, name: "Ronnie Coleman", roles: [2, 4, 6] },
+        { id: 3, name: "Michio Kaku", roles: [1, 3, 5] },
+        { id: 4, name: "Bryan Adams", roles: [2, 6, 8] },
+        { id: 5, name: "Lorena", roles: [1, 5] },
+      ],
       output: "",
     };
   },
-  computed: {},
-  methods: {},
+  computed: {
+    total() {
+      return this.myarray.length;
+    },
+  },
+  methods: {
+    generateOutput() {
+      this.output = `El total de listado es: ${this.total}`;
+    },
+  },
 };
 </script>
 
