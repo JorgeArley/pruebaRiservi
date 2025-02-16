@@ -3,8 +3,7 @@
 
 error_reporting(E_ALL); // Si el examen está bien hecho NO debe mostrar ningún Warning ni error de PHP
 
-function examen($iMin, $iMax, &$aDatos){
-    
+function examen($iMin, $iMax, &$aDatos){    
 	if(
 		is_int($iMax) & 
 		is_int($iMin) & 
@@ -16,7 +15,18 @@ function examen($iMin, $iMax, &$aDatos){
 		is_array($aDatos) & 
 		empty($aDatos)
 	) {
-		 return TRUE;
+		for ($i = $iMin; $i <= $iMax; $i++) {
+	    if($i % 3 == 0 & $i % 5 == 0) {
+	      $aDatos[$i] = "FOOBAR";
+	    } else  if($i % 3 == 0) {
+	      $aDatos[$i] = "FOO";
+	    } else  if($i % 5 == 0) {
+	      $aDatos[$i] = "BAR";
+	    } else {
+	      $aDatos[$i] = "";
+	    }	    
+    }
+		return TRUE;
 	}
 	return FALSE;
 	}
