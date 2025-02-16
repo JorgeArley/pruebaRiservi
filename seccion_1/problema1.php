@@ -4,10 +4,22 @@
 error_reporting(E_ALL); // Si el examen está bien hecho NO debe mostrar ningún Warning ni error de PHP
 
 function examen($iMin, $iMax, &$aDatos){
-    if($iMax > $Min) 
     
-    return TRUE;
-}
+	if(
+		is_int($iMax) & 
+		is_int($iMin) & 
+		strlen($iMax) >= 1 & 
+		strlen($iMax) <= 3 & 
+		strlen($iMin) >= 1 & 
+		strlen($iMin) <= 3 & 
+		$iMax > $iMin & 
+		is_array($aDatos) & 
+		empty($aDatos)
+	) {
+		 return TRUE;
+	}
+	return FALSE;
+	}
 
 
 // CASO DE PRUEBA 1
