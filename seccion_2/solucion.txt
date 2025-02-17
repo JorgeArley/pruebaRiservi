@@ -1,0 +1,33 @@
+CREATE TABLE paises (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+INSERT INTO paises(id,nombre) VALUES (1,'Panama');
+INSERT INTO paises(id,nombre) VALUES (2,'Chile');
+INSERT INTO paises(id,nombre) VALUES (3,'Colombia');
+INSERT INTO paises(id,nombre) VALUES (4,'Venezuela');
+INSERT INTO paises(id,nombre) VALUES (5,'Argentina');
+
+CREATE TABLE Ciudades (
+    id INT PRIMARY KEY,
+    id_pais INT,
+    nombre VARCHAR(50),
+    FOREIGN KEY (id_pais) REFERENCES paises(id)
+);
+
+INSERT INTO Ciudades(id, id_pais, nombre) VALUES (1, 1, 'Panama');
+INSERT INTO Ciudades(id, id_pais, nombre) VALUES (2, 2, 'Santiago');
+INSERT INTO Ciudades(id, id_pais, nombre) VALUES (3, 3, 'Bogota');
+INSERT INTO Ciudades(id, id_pais, nombre) VALUES (4, 3, 'Cali');
+INSERT INTO Ciudades(id, id_pais, nombre) VALUES (5, 4, 'Caracas');
+INSERT INTO Ciudades(id, id_pais, nombre) VALUES (6, 5, 'Rosario');
+INSERT INTO Ciudades(id, id_pais, nombre) VALUES (7, Null, 'Mexico');
+INSERT INTO Ciudades(id, id_pais, nombre) VALUES (8, 2, 'Vina');
+
+
+/*SELECT * FROM Ciudades*/
+SELECT Ciudades.nombre,  paises.nombre as pais
+FROM Ciudades
+RIGHT JOIN paises ON Ciudades.id_pais = paises.id
+ORDER BY paises.nombre ASC, Ciudades.nombre ASC
